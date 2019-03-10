@@ -1,0 +1,9 @@
+/node_modules/
+/coverage/
+/bin/
+log-camel-lsp.out
+.classpath
+.project
+/.settings/
+.DS_Store
+.yo-rc.json

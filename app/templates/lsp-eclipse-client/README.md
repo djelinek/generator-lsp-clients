@@ -1,4 +1,4 @@
-# lsp-eclipse-client
+# lsp-eclipse-client
 
 ## Packaging
 

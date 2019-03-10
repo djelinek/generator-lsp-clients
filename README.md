@@ -12,7 +12,7 @@ The implemented tool should be easy to use and build on top of modern technologi
 - Eclipse
 - Eclipse Che
 
-## Run generator-lsp-clients
+## Run generator-lsp-clients
 
 Create new project folder in _generator-lsp-clients_ root directory:
 > mkdir my-project

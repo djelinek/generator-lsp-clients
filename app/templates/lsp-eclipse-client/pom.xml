@@ -7,7 +7,7 @@
 
 	<groupId>lsp-client</groupId>
 	<artifactId>org.vutbr.lsp.client</artifactId>
-	<name>LSP Client Implementation</name>
+	<name><%= userProps.bundleName %></name>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 

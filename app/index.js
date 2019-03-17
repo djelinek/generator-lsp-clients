@@ -20,10 +20,10 @@ var glob = require('glob');
 var path = require('path');
 var utils = require('./utils');
 
-const defaultJarPath = "/Users/djelinek/develop/tmp/camel-lsp-server-1.1.0-SNAPSHOT.jar";
-const defaultServerID = "LANGUAGE_ID_APACHE_CAMEL";
-const defaultFileTypes = "xml";
-const defaultClient = 'eclipse';
+// const defaultJarPath = "/Users/djelinek/develop/tmp/camel-lsp-server-1.1.0-SNAPSHOT.jar";
+// const defaultServerID = "LANGUAGE_ID_APACHE_CAMEL";
+// const defaultFileTypes = "xml";
+// const defaultClient = 'eclipse';
 
 function consoleHeader() {
   var pjson = require('../package.json');
@@ -50,6 +50,7 @@ module.exports = class extends yeoman {
   constructor(args, opts) {
     super(args, opts);
     // base arguments
+    this.argument('appname', { type: String, required: false });
     this.argument('jarPath', { type: String, required: false });
     this.argument('serverID', { type: String, required: false });
     this.argument('fileType', { type: String, required: false });
@@ -60,7 +61,8 @@ module.exports = class extends yeoman {
     // default setting is show user prompts
     var showPrompts = true;
 
-    if (utils.isNotNull(this.options.jarPath) &&
+    if (utils.isNotNull(this.options.appname) &&
+      utils.isNotNull(this.options.jarPath) &&
       utils.isNotNull(this.options.serverID) &&
       utils.isNotNull(this.options.fileType) &&
       utils.isNotNull(this.options.client)) {
@@ -74,12 +76,19 @@ module.exports = class extends yeoman {
     }
 
     // sets default prompts values
+    var defaultProject = utils.setDefault(this.appname, this.options.appname);
     var defaultJarPath = utils.setDefault(defaultJarPath, this.options.jarPath);
     var defaultServerID = utils.setDefault(defaultServerID, this.options.serverID);
     var defaultFileType = utils.setDefault(defaultFileType, this.options.fileType);
     var defaultClient = utils.setDefault(defaultClient, this.options.client);
 
     var questions = [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Your LSP client name?',
+        default: defaultProject.replace(' ', '-')
+      },
       {
         type: 'input',
         name: 'jarPath',
@@ -127,12 +136,14 @@ module.exports = class extends yeoman {
     // link user answers to appropriate generator variables
     if (showPrompts) {
       return this.prompt(questions).then(function (props) {
+        this.appname = props.name.replace(' ', '-');
         this.jarPath = props.jarPath;
         this.serverID = props.serverID;
         this.fileType = props.fileType;
         this.client = props.client;
       }.bind(this));
     } else {
+      this.appname = defaultProject.replace(' ', '-');
       this.jarPath = defaultJarPath;
       this.serverID = defaultServerID;
       this.fileType = defaultFileType;
@@ -152,13 +163,14 @@ module.exports = class extends yeoman {
 
     this.log('Generating client files...');
     var userProps = {};
+    userProps.bundleName = this.appname.replace(' ', '-');
     userProps.jarPath = this.jarPath;
     userProps.serverID = this.serverID;
     userProps.fileType = this.fileType;
     userProps.client = this.client;
     // additional user props for client template
     userProps.runJar = 'java -jar';
-    userProps.bundleName = 'LSP Client Ext Plugin';
+    userProps.runJarField = userProps.runJar.split(' ');
     userProps.bundleVendor = 'LSP Client Generator by Red Hat'
 
     // copy all template files

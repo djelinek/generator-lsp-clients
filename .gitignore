@@ -7,3 +7,7 @@ log-camel-lsp.out
 /.settings/
 .DS_Store
 .yo-rc.json
+libs/lsp-server.jar
+*.vsix
+.vscode-test
+target

@@ -1,4 +1,4 @@
-[![Github last commit](https://img.shields.io/github/last-commit/djelinek/generator-lsp-clients/master.svg?style=for-the-badge)]() [![GitHub tag](https://img.shields.io/github/tag/djelinek/generator-lsp-clients.svg?style=for-the-badge)]() [![Build Status](https://img.shields.io/travis/djelinek/generator-lsp-clients/master.svg?style=for-the-badge)](https://travis-ci.org/djelinek/generator-lsp-clients) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=for-the-badge)]() [![Gitter](https://img.shields.io/gitter/room/generator-lsp-clients/community.svg?style=for-the-badge)](https://gitter.im/generator-lsp-clients/community)
+[![Github last commit](https://img.shields.io/github/last-commit/djelinek/generator-lsp-clients/master.svg?style=for-the-badge)]() [![GitHub tag](https://img.shields.io/github/tag/djelinek/generator-lsp-clients.svg?style=for-the-badge)]() [![License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=for-the-badge)]() [![Gitter](https://img.shields.io/gitter/room/generator-lsp-clients/community.svg?style=for-the-badge)](https://gitter.im/generator-lsp-clients/community)
 
 # LSP Clients Generator
 

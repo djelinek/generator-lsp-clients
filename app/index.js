@@ -167,7 +167,7 @@ module.exports = class extends yeoman {
 
     this.log('Generating client files...');
     var userProps = {};
-    userProps.bundleName = tutils.replaceAll(this.appname, ' ', '-')
+    userProps.bundleName = utils.replaceAll(this.appname, ' ', '-')
     userProps.jarPath = this.jarPath;
     userProps.serverID = this.serverID;
     userProps.fileType = this.fileType;

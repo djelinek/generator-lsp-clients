@@ -87,7 +87,7 @@ module.exports = class extends yeoman {
         type: 'input',
         name: 'name',
         message: 'LSP client name?',
-        default: defaultProject.replace(' ', '-')
+        default: utils.replaceAll(defaultProject, ' ', '-')
       },
       {
         type: 'input',
@@ -140,14 +140,14 @@ module.exports = class extends yeoman {
     // link user answers to appropriate generator variables
     if (showPrompts) {
       return this.prompt(questions).then(function (props) {
-        this.appname = props.name.replace(' ', '-');
+        this.appname = utils.replaceAll(props.name, ' ', '-');
         this.jarPath = props.jarPath;
         this.serverID = props.serverID;
         this.fileType = props.fileType;
         this.client = props.client;
       }.bind(this));
     } else {
-      this.appname = defaultProject.replace(' ', '-');
+      this.appname = utils.replaceAll(defaultProject, ' ', '-');
       this.jarPath = defaultJarPath;
       this.serverID = defaultServerID;
       this.fileType = defaultFileType;
@@ -167,7 +167,7 @@ module.exports = class extends yeoman {
 
     this.log('Generating client files...');
     var userProps = {};
-    userProps.bundleName = this.appname.replace(' ', '-');
+    userProps.bundleName = tutils.replaceAll(this.appname, ' ', '-')
     userProps.jarPath = this.jarPath;
     userProps.serverID = this.serverID;
     userProps.fileType = this.fileType;

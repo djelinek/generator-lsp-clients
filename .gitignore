@@ -10,4 +10,5 @@ log-camel-lsp.out
 libs/lsp-server.jar
 *.vsix
 .vscode-test
-target
+target/
+.vscode/

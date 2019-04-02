@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
+const chalk = require('chalk');
+const fs = require('fs');
+const path = require('path');
 const utils = {};
 
 utils.isEmpty = function isEmpty(str) {
@@ -36,6 +39,29 @@ utils.setDefault = function setDefault(baseDefault, optionDefault) {
         newDefault = optionDefault.substring(index+1, optionDefault.length);
     }
     return newDefault;
+}
+
+utils.validateFileType = function validateFileType(value) { 
+    const isXML = value.includes('xml');
+    const isJava = value.includes('java');
+    let returnValue;
+    if (!isXML && !isJava) {
+        returnValue = chalk.red('File extensions must be at least one of - [\'xml\'\, \'java\'].');
+    } else {
+        returnValue = true;
+    }
+    return returnValue;
+}
+
+utils.validateJarPath = function validateJarPath(jarPath) {
+    const f = fs.readFileSync(jarPath);
+    let returnValue;
+    if (typeof f === "undefined") {
+        returnValue = chalk.red('Specified path to server \'.jar\' file is not valid.');
+    } else {
+        returnValue = true;
+    }
+    return returnValue;
 }
 
 module.exports = utils;

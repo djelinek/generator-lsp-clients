@@ -30,13 +30,13 @@ public class LSPStreamConnectionProvider extends ProcessStreamConnectionProvider
 
 	private static List<String> computeCommands() {
 		List<String> commands = new ArrayList<>();
-		commands.add("java");
-		commands.add("-jar");
-		commands.add(getCamelLanguageServerJarPath());
+		commands.add("<%= userProps.runJarField[0] %>");
+		commands.add("<%= userProps.runJarField[1] %>");
+		commands.add(getLanguageServerJarPath());
 		return commands;
 	}
 
-	private static String getCamelLanguageServerJarPath() {
+	private static String getLanguageServerJarPath() {
 		String jarPath = "";
 		URL fileURL = Platform.getBundle(Activator.PLUGIN_ID).getEntry(LSP_SERVER_ROOT + "/" + LSP_SERVER_NAME);
 		try {

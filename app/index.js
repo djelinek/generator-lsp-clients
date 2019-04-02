@@ -86,7 +86,7 @@ module.exports = class extends yeoman {
       {
         type: 'input',
         name: 'name',
-        message: 'Your LSP client name?',
+        message: 'LSP client name?',
         default: defaultProject.replace(' ', '-')
       },
       {
@@ -94,6 +94,7 @@ module.exports = class extends yeoman {
         name: 'jarPath',
         message: 'Path to LSP server (.jar)?',
         default: defaultJarPath,
+        validate: utils.validateJarPath,
         store: true
       },
       {
@@ -109,6 +110,9 @@ module.exports = class extends yeoman {
         message: 'Supported file extensions?',
         choices: ['xml', 'java'],
         default: defaultFileType,
+        validate: (value) => {
+          return utils.validateFileType(value);
+        },
         store: true
       },
       {

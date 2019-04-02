@@ -51,7 +51,7 @@ export function activate(context: ExtensionContext) {
 	languageClient.onReady().then(() => {
 		item.text = '<%= userProps.bundleName %> Language Server started';
 		toggleItem(window.activeTextEditor, item);
-		commands.registerCommand('apache.camel.open.output', ()=>{
+		commands.registerCommand('lsp.<%= userProps.bundleName %>.open.output', ()=>{
 		languageClient.outputChannel.show(ViewColumn.Three);
 	}, error => {console.log(error)});
 

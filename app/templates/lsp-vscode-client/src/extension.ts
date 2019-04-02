@@ -8,6 +8,7 @@ var os = require('os');
 var storagePath;
 
 const LANGUAGE_CLIENT_ID = '<%= userProps.serverID %>';
+const LANGUAGE_CLIENT_NAME = '<%= userProps.bundleName %>';
 
 export function activate(context: ExtensionContext) {
 	languages.setLanguageConfiguration('<%= userProps.fileType[0] %>', {
@@ -47,7 +48,7 @@ export function activate(context: ExtensionContext) {
 	item.text = 'Starting <%= userProps.bundleName %> Language Server...';
 	toggleItem(window.activeTextEditor, item);
 	// Create the language client and start the client.
-	let languageClient = new LanguageClient(LANGUAGE_CLIENT_ID, '<%= userProps.bundleName %>', serverOptions, clientOptions);
+	let languageClient = new LanguageClient(LANGUAGE_CLIENT_ID, LANGUAGE_CLIENT_NAME, serverOptions, clientOptions);
 	languageClient.onReady().then(() => {
 		item.text = '<%= userProps.bundleName %> Language Server started';
 		toggleItem(window.activeTextEditor, item);

@@ -20,6 +20,10 @@ const fs = require('fs');
 const path = require('path');
 const utils = {};
 
+utils.replaceAll = function replaceAll(str, search, replacement) {
+    return str.split(search).join(replacement);
+}
+
 utils.isEmpty = function isEmpty(str) {
     return (!str || 0 === str.length);
 }

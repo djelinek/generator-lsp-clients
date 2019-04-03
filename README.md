@@ -14,7 +14,7 @@ The implemented tool should be easy to use and build on top of modern technologi
 - Eclipse
 - Eclipse Che
 
-## Running generator-lsp-clients
+## Running the generator-lsp-clients
 
 Create new project folder in _generator-lsp-clients_ root directory:
 > mkdir my-project
@@ -25,7 +25,7 @@ Change active directory:
 Run generator:
 > yo lsp-clients
 
-## Running the generator-lsp-clients from Command Line
+## Running the generator-lsp-clients from Command Line
 
 Example:
 > yo lsp-clients appname=MyClient jarPath=${home}/lsp-server.jar serverID=LANGUAGE_ID_APACHE_CAMEL fileType=xml client=eclipse

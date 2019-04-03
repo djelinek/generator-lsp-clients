@@ -50,9 +50,5 @@
     "yeoman-generator": "^2.0.5",
     "yeoman-test": "^1.7.2",
     "yosay": "^2.0.1"
-  },
-  "scripts": {
-    "unit": "mocha --timeout=30000 tests/",
-    "test": "npm run unit"
   }
 }

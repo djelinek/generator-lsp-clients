@@ -17,7 +17,6 @@
 
 const chalk = require('chalk');
 const fs = require('fs');
-const path = require('path');
 const utils = {};
 
 utils.replaceAll = function replaceAll(str, search, replacement) {
@@ -64,6 +63,18 @@ utils.validateJarPath = function validateJarPath(jarPath) {
         returnValue = chalk.red('Specified path to server \'.jar\' file is not valid.');
     } else {
         returnValue = true;
+    }
+    return returnValue;
+}
+
+utils.validateClientTemplateMask = function validateClientTemplateMask(mask) {
+    let returnValue
+    if(mask.match('vscode')) {
+        returnValue = 'lsp-vscode-client'; 
+    } else if(mask.match('che')) {
+        returnValue = 'lsp-che-client';
+    } else {
+        returnValue = 'lsp-eclipse-client';
     }
     return returnValue;
 }

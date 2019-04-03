@@ -82,6 +82,7 @@ module.exports = class extends yeoman {
     var defaultFileType = utils.setDefault(defaultFileType, this.options.fileType);
     var defaultClient = utils.setDefault(defaultClient, this.options.client);
 
+    // show prompts question fields
     var questions = [
       {
         type: 'input',
@@ -147,11 +148,12 @@ module.exports = class extends yeoman {
         this.client = props.client;
       }.bind(this));
     } else {
+      // link command line parameters to appropriate generator variables
       this.appname = utils.replaceAll(defaultProject, ' ', '-');
       this.jarPath = defaultJarPath;
       this.serverID = defaultServerID;
       this.fileType = defaultFileType;
-      this.client = defaultClient;
+      this.client = utils.validateClientTemplateMask(defaultClient);
     }
   }
 
@@ -167,7 +169,7 @@ module.exports = class extends yeoman {
 
     this.log('Generating client files...');
     var userProps = {};
-    userProps.bundleName = utils.replaceAll(this.appname, ' ', '-')
+    userProps.bundleName = utils.replaceAll(this.appname, ' ', '-').toLowerCase();
     userProps.jarPath = this.jarPath;
     userProps.serverID = this.serverID;
     userProps.fileType = this.fileType;
@@ -175,7 +177,7 @@ module.exports = class extends yeoman {
     // additional user props for client template
     userProps.runJar = 'java -jar';
     userProps.runJarField = userProps.runJar.split(' ');
-    userProps.bundleVendor = 'LSP Client Generator by Red Hat'
+    userProps.bundleVendor = 'LSP Client Generator by Red Hat';
 
     // copy all template files
     for (var i = 0; i < this.files.length; i++) {

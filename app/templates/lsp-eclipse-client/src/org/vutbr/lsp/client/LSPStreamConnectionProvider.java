@@ -16,7 +16,7 @@ import org.eclipse.lsp4e.server.ProcessStreamConnectionProvider;
 
 public class LSPStreamConnectionProvider extends ProcessStreamConnectionProvider {
 
-	private static final String LSP_SERVER_NAME = "*lsp-server*.jar";
+	private static final String LSP_SERVER_NAME = "lsp-server.jar";
 	private static final String LSP_SERVER_ROOT = "/libs";
 	private static final String LSP_SERVER_ERR_MSG = "Cannot found the LSP Server '.jar' file!";
 

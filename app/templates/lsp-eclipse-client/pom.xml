@@ -16,8 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<eclipse-target-site>https://download.eclipse.org/releases/2018-12/201812191000/</eclipse-target-site>
-		<eclipse-orbit-update-site>https://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository/</eclipse-orbit-update-site>
+		<eclipse-target-site>https://download.eclipse.org/releases/2019-03/201903201000/</eclipse-target-site>
+		<eclipse-orbit-update-site>https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository/</eclipse-orbit-update-site>
 	</properties>
 
 	<repositories>

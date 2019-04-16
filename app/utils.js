@@ -68,7 +68,7 @@ utils.validateJarPath = function validateJarPath(jarPath) {
 }
 
 utils.validateClientTemplateMask = function validateClientTemplateMask(mask) {
-    let returnValue
+    let returnValue;
     if(mask.match('vscode')) {
         returnValue = 'lsp-vscode-client'; 
     } else if(mask.match('che')) {
@@ -77,6 +77,14 @@ utils.validateClientTemplateMask = function validateClientTemplateMask(mask) {
         returnValue = 'lsp-eclipse-client';
     }
     return returnValue;
+}
+
+utils.isJavaServerType = function isJavaServerType(type) {
+    if(type.match("java")) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 module.exports = utils;

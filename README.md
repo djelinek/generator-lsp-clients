@@ -13,6 +13,7 @@ The implemented tool should be easy to use and build on top of modern technologi
 - VS Code
 - Eclipse
 - Eclipse Che
+- (_in-progress_) Theia
 
 ## Running the generator-lsp-clients
 

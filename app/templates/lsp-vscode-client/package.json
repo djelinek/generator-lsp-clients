@@ -44,8 +44,8 @@
     "mvn-artifact-download": "^3.1.0",
     "tslint": "^5.12.1",
     "typescript": "^2.0.3",
-    "vsce": "^1.45.1",
-    "vscode": "^1.1.29"
+    "vsce": "^1.59.0",
+    "vscode": "^1.1.33"
   },
   "dependencies": {
     "decompress": "^4.2.0",

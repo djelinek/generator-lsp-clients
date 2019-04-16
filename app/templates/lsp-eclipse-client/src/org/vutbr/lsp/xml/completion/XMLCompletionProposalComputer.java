@@ -29,11 +29,11 @@ public class XMLCompletionProposalComputer implements ICompletionProposalCompute
 	}
 
 	@Override
-	public void sessionEnded() {
-	}
-
-	@Override
 	public void sessionStarted() {
+	}
+	
+	@Override
+	public void sessionEnded() {
 	}
 
 }

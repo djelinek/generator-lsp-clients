@@ -8,6 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Yeoman lsp-clients",
+            "cwd": "${workspaceFolder}/tmp-dev",
             "program": "${env:HOME}/.npm-global/lib/node_modules/yo/lib/cli.js",
             "args": [
                 "lsp-clients"

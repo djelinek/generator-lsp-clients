@@ -1,52 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension point="org.eclipse.lsp4e.languageServer">
-      <contentTypeMapping
-            contentType="org.eclipse.core.runtime.xml"
-            id="lsp.server.xml"
-            languageId="<%= userProps.serverID %>">
-      </contentTypeMapping>
-      <contentTypeMapping
-            contentType="org.eclipse.jdt.core.javaSource"
-            id="lsp.server.java"
-            languageId="<%= userProps.serverID %>">
-      </contentTypeMapping>
-      
-      <server
-            class="org.vutbr.lsp.client.LSPStreamConnectionProvider"
-            id="lsp.server.xml"
-            label="LSP Server for XML">
-      </server>
-      <server
-            class="org.vutbr.lsp.client.LSPStreamConnectionProvider"
-            id="lsp.server.java"
-            label="LSP Server for Java">
-      </server>
-   </extension>
-   
-   <extension point="org.eclipse.wst.sse.ui.completionProposal">
-   	  <proposalCategory
-           id="org.category"
-           name="Completion proposals">
-  	  </proposalCategory>
- 
-  	  <proposalComputer
-       	   activate="true"
-           categoryId="org.category"
-           class="org.vutbr.lsp.xml.completion.XMLCompletionProposalComputer"
-           id="org.xml.proposalcomputer">      
-      	<contentType id="org.eclipse.core.runtime.xml"/>      
-  	  </proposalComputer> 
-   </extension>
-   
-   <extension id="idJavaComputer" point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
-      <javaCompletionProposalComputer
-            activate="true"
-            categoryId="org.eclipse.jdt.ui.defaultProposalCategory"
-            class="org.vutbr.lsp.java.completion.JavaCompletionProposalComputer"
-            needsSortingAfterFiltering="false">
-      </javaCompletionProposalComputer>
-   </extension>
-   
+   <% for (var i = 0; i < userProps.extensionPoints.length; i++) { %> <%- userProps.extensionPoints[i] %> <% } %>
 </plugin>

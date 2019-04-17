@@ -67,14 +67,26 @@ utils.validateJarPath = function validateJarPath(jarPath) {
     return returnValue;
 }
 
-utils.validateClientTemplateMask = function validateClientTemplateMask(mask) {
+utils.validateClientTemplateMask = function validateClientTemplateMask(mask, serverType) {
     let returnValue;
     if(mask.match('vscode')) {
-        returnValue = 'lsp-vscode-client'; 
+        if(serverType.match("java")) {
+            returnValue = 'lsp-vscode-client'; 
+        } else {
+            returnValue = 'default-vscode-client'; 
+        }
     } else if(mask.match('che')) {
-        returnValue = 'lsp-che-client';
+        if(serverType.match("java")) {
+            returnValue = 'lsp-che-client'; 
+        } else {
+            rreturnValue = 'default-che-client';
+        }
     } else {
-        returnValue = 'lsp-eclipse-client';
+        if(serverType.match("java")) {
+            returnValue = 'lsp-eclipse-client';
+        } else {
+            returnValue = 'default-eclipse-client';
+        }
     }
     return returnValue;
 }

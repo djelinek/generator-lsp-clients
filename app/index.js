@@ -150,6 +150,9 @@ module.exports = class extends yeoman {
         store: true
       },
       {
+        when: function (response) {
+          return utils.isJavaServerType(response.serverType);
+        },
         type: 'list',
         name: 'client',
         message: 'LSP client for?',
@@ -165,6 +168,29 @@ module.exports = class extends yeoman {
           {
             name: 'eclipse-che',
             value: 'lsp-che-client'
+          }],
+        default: defaultClient,
+        store: true
+      },
+      {
+        when: function (response) {
+          return !utils.isJavaServerType(response.serverType);
+        },
+        type: 'list',
+        name: 'client',
+        message: 'LSP client for?',
+        choices: [
+          {
+            name: 'vscode',
+            value: 'default-vscode-client'
+          },
+          {
+            name: 'eclipse',
+            value: 'default-eclipse-client'
+          },
+          {
+            name: 'eclipse-che',
+            value: 'default-che-client'
           }],
         default: defaultClient,
         store: true
@@ -196,65 +222,65 @@ module.exports = class extends yeoman {
         this.fileType = defaultFileType;
       }
       // ---
-      this.client = utils.validateClientTemplateMask(defaultClient);
+      this.client = utils.validateClientTemplateMask(defaultClient, this.serverType);
     }
   }
 
   // writing logic here
   writing() {
+    // get path to specific template
+    var myTemplatePath = path.join(this.templatePath(), this.client);
+    this.folders = glob.sync('**/*/', { cwd: myTemplatePath });
+    this.files = glob.sync('**/*', { cwd: myTemplatePath, nodir: true });
+
+    // set source root folder to appropriate template
+    this.sourceRoot(myTemplatePath);
+
+    this.log('Generating client files...');
+    var userProps = {};
+    userProps.bundleName = utils.replaceAll(this.appname, ' ', '-').toLowerCase();
+    userProps.serverType = this.serverType;
+    userProps.client = this.client;
+
     if (utils.isJavaServerType(this.serverType)) {
-      // get path to specific template
-      var myTemplatePath = path.join(this.templatePath(), this.client);
-      this.folders = glob.sync('**/*/', { cwd: myTemplatePath });
-      this.files = glob.sync('**/*', { cwd: myTemplatePath, nodir: true });
-
-      // set source root folder to appropriate template
-      this.sourceRoot(myTemplatePath);
-
-      this.log('Generating client files...');
-      var userProps = {};
-      userProps.bundleName = utils.replaceAll(this.appname, ' ', '-').toLowerCase();
-      userProps.serverType = this.serverType;
+      // Java server specific user props
       userProps.jarPath = this.jarPath;
       userProps.serverID = this.serverID;
       userProps.fileType = this.fileType;
-      userProps.client = this.client;
 
-      // additional user props for client template
+      // additional props for client template
       userProps.runJar = 'java -jar';
       userProps.runJarField = userProps.runJar.split(' ');
       userProps.bundleVendor = 'LSP Client Generator by Red Hat';
 
-      // set templates props
-      // Eclipse template
-      userProps.extensionPoints = builder.getExtensionPoints(userProps.fileType, userProps.serverID);
-      // VS Code template
-      // TO-DO...
-      //
-      // Eclipse Che template
-      // TO-DO...
-      //
-
-      /////////////////////////////////////////////////////////////////////////////////////////
-      // copy all template files to destination project folder
-      for (var i = 0; i < this.files.length; i++) {
-        this.fs.copyTpl(
-          this.templatePath(this.files[i]),
-          this.destinationPath(this.files[i]),
-          { userProps: userProps }
-        );
-      }
+      // set specific templates props
+      userProps.extensionPoints = builder.getExtensionPoints(userProps.fileType, userProps.serverID); // Eclipse template
+      // TO-DO... // VS Code template
+      // TO-DO... // Eclipse Che template
+      // TO-DO... // Theia template
 
       // copy JAR file of existing LSP server written in Java language
       this.log('Copying LSP server to client resources...');
-      this.fs.copy(this.jarPath, path.join(this.destinationPath(), 'libs', 'lsp-server.jar'));
+      this.fs.copy(userProps.jarPath, path.join(this.destinationPath(), 'libs', 'lsp-server.jar'));
     } else {
-      generateOthers();
+      generateOthers(userProps);
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // copy all template files to destination project folder
+    for (var i = 0; i < this.files.length; i++) {
+      this.fs.copyTpl(
+        this.templatePath(this.files[i]),
+        this.destinationPath(this.files[i]),
+        { userProps: userProps }
+      );
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
   }
 };
 
-function generateOthers() {
-  console.log('Generating client files...');
+function generateOthers(userProps) {
+  console.log('App name: ' + userProps.bundleName + ', Client for: ' + userProps.client);
   console.log('Default template structure was successfully prepared!');
+  console.log('Please look into README.md file!')
 }

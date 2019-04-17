@@ -10,10 +10,10 @@ The implemented tool should be easy to use and build on top of modern technologi
 
 ## Available client templates
 
-- VS Code
-- Eclipse
-- Eclipse Che
-- (_in-progress_) Theia
+- [x] VS Code
+- [x] Eclipse
+- [x] Eclipse Che
+- [ ] Theia
 
 ## Running the generator-lsp-clients
 

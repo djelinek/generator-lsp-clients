@@ -9,29 +9,11 @@
   "engines": {
     "vscode": "^1.25.1"
   },
-  "activationEvents": [
-    "onLanguage:<%= userProps.fileType[0] %>",
-    "workspaceContains:*.<%= userProps.fileType[0] %>",
-    "onLanguage:<%= userProps.fileType[1] %>",
-    "workspaceContains:*.<%= userProps.fileType[1] %>"
+  "activationEvents": [ <% for (var i = 0; i < userProps.activationEvents.length; i++) { %> <%- userProps.activationEvents[i] %> <% } %>
   ],
   "main": "./out/extension",
   "contributes": {
-    "languages": [
-      {
-        "id": "<%= userProps.fileType[0] %>",
-        "extensions": [
-          ".<%= userProps.fileType[0] %>"
-        ],
-        "configuration": "./language-configuration.json"
-      },
-      {
-        "id": "<%= userProps.fileType[1] %>",
-        "extensions": [
-          ".<%= userProps.fileType[1] %>"
-        ],
-        "configuration": "./language-configuration.json"
-      }
+    "languages": [ <% for (var i = 0; i < userProps.contributesLanguages.length; i++) { %> <%- userProps.contributesLanguages[i] %> <% } %>
     ]
   },
   "scripts": {

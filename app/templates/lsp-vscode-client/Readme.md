@@ -8,4 +8,4 @@
 
 ## How to install
 
-> code --install-extension bundlename-0.0.1.vsix
+> code --install-extension <%= userProps.bundleName %>-0.0.1.vsix

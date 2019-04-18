@@ -231,7 +231,7 @@ module.exports = class extends yeoman {
     // get path to specific template
     var myTemplatePath = path.join(this.templatePath(), this.client);
     this.folders = glob.sync('**/*/', { cwd: myTemplatePath });
-    this.files = glob.sync('**/*', { cwd: myTemplatePath, nodir: true });
+    this.files = glob.sync('**/*', { cwd: myTemplatePath, nodir: true, dot: true, ignore: '**/*{.DS_Store,.yo-rc.json}' });
 
     // set source root folder to appropriate template
     this.sourceRoot(myTemplatePath);

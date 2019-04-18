@@ -28,7 +28,7 @@ import org.eclipse.che.plugin.<%= userProps.bundleName %>.server.inject.LSPGener
 /** Launcher for <%= userProps.bundleName %> Language Server */
 @Singleton
 public class LSPGeneratorLanguageServerConfig implements LanguageServerConfig {
-  private static final String REGEX = ".*\\.(<%= userProps.fileType[0] %>|<%= userProps.fileType[1] %>)$";
+  private static final String REGEX = ".*\\.(<%- userProps.fileTypeRegex %>)$";
 
   private final Path launchScript;
   private final RootDirPathProvider rootDirPathProvider;

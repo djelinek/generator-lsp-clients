@@ -119,4 +119,116 @@ builder.getExtensionPoints = function getExtensionPoints(fileTypes, serverID) {
     return extensionPoints;
 }
 
+/**
+ * Return all activation events for VS Code client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          activationEvents - String[] 
+ */
+builder.getActivationEvents = function getActivationEvents(fileTypes) {
+    let activationEvents = [];
+    for (let index = 0; index < fileTypes.length; index++) {
+        activationEvents[index] = `
+        "onLanguage:${fileTypes[index]}",
+        "workspaceContains:*.${fileTypes[index]}",`;
+    }
+    // remove last comma - syntax error prevention
+    activationEvents[activationEvents.length - 1] = activationEvents[activationEvents.length - 1].replace(/,\s*$/, "");
+    return activationEvents;
+}
+
+/**
+ * Return all contibutes languages for VS Code client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          languages - String[] 
+ */
+builder.getContributesLanguages = function getContributesLanguages(fileTypes) {
+    let languages = [];
+    for (let index = 0; index < fileTypes.length; index++) {
+        languages[index] = `
+          {
+            "id": "${fileTypes[index]}",
+            "extensions": [
+              ".${fileTypes[index]}"
+            ],
+            "configuration": "./language-configuration.json"
+          },`;
+    }
+    // remove last comma - syntax error prevention
+    languages[languages.length - 1] = languages[languages.length - 1].replace(/,\s*$/, "");
+    return languages;
+}
+
+/**
+ * Return all file events for VS Code client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          events - String[] 
+ */
+builder.getFileEvents = function getFileEvents(fileTypes) {
+    let events = [];
+    for (let index = 0; index < fileTypes.length; index++) {
+        events[index] = `
+                workspace.createFileSystemWatcher('**/*.${fileTypes[index]}')`;
+    }
+    // remove last comma - syntax error prevention
+    events[events.length - 1] = events[events.length - 1].replace(/,\s*$/, "");
+    return events;
+}
+
+/**
+ * Return all file types as string array format for VS Code client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          formatArray - String
+ */
+builder.getFileTypesAsStringArrayFormat = function getFileTypesAsStringArrayFormat(fileTypes) {
+    let formatArray = "";
+    for (let index = 0; index < fileTypes.length; index++) {
+        formatArray += `'${fileTypes[index]}', `;
+    }
+    // remove last comma - syntax error prevention
+    formatArray = formatArray.replace(/,\s*$/, "");
+    return formatArray;
+}
+
+/**
+ * Return all document language ID's for VS Code client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          documentLanguageId - String
+ */
+builder.getDocumentLanguageId = function getDocumentLanguageId(fileTypes) {
+    let documentLanguageId = "";
+    for (let index = 0; index < fileTypes.length; index++) {
+        documentLanguageId += `editor.document.languageId === '${fileTypes[index]}' || `;
+    }
+    // remove last comma - syntax error prevention
+    documentLanguageId = documentLanguageId.substring(0,documentLanguageId.lastIndexOf("||")).trim();
+    return documentLanguageId;
+}
+
+/**
+ * Return regex format for all file types for Eclipse Che client template
+ * input: 
+ *          fileTypes - String[]
+ * output:
+ *          regex - String
+ */
+builder.getFileTypeRegex = function getFileTypeRegex(fileTypes) {
+    let regex = "";
+    for (let index = 0; index < fileTypes.length; index++) {
+        regex += `${fileTypes[index]} | `;
+    }
+    // remove last comma - syntax error prevention
+    regex = regex.substring(0,regex.lastIndexOf("|")).trim();
+    return regex;
+}
+
 module.exports = builder;

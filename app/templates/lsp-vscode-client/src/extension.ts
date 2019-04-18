@@ -11,10 +11,11 @@ const LANGUAGE_CLIENT_ID = '<%= userProps.serverID %>';
 const LANGUAGE_CLIENT_NAME = '<%= userProps.bundleName %>';
 
 export function activate(context: ExtensionContext) {
+	<% if(userProps.fileType.includes('xml')) { %> 
 	languages.setLanguageConfiguration('<%= userProps.fileType[0] %>', {
 		wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g,
 	});
-
+	<% } %>
 	storagePath = context.storagePath;
 	if (!storagePath) {
 		storagePath = getTempWorkspace();
@@ -33,13 +34,11 @@ export function activate(context: ExtensionContext) {
 	// Options to control the language client
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for xml
-		documentSelector: ['<%= userProps.fileType[0] %>', '<%= userProps.fileType[1] %>'],
+		documentSelector: [<%- userProps.documentSelectors %>],
 		synchronize: {
-			configurationSection: ['<%= userProps.fileType[0] %>', '<%= userProps.fileType[1] %>'],
+			configurationSection: [<%- userProps.configurationSections %>],
 			// Notify the server about file changes to .xml files contain in the workspace
-			fileEvents: [
-				workspace.createFileSystemWatcher('**/*.<%= userProps.fileType[0] %>'),
-				workspace.createFileSystemWatcher('**/*.<%= userProps.fileType[1] %>')
+			fileEvents: [<%- userProps.fileEvents %>
 			],
 		}
 	};
@@ -68,7 +67,7 @@ export function activate(context: ExtensionContext) {
 
 function toggleItem(editor: TextEditor, item) {
 	if(editor && editor.document &&
-		(editor.document.languageId === '<%= userProps.fileType[0] %>' || editor.document.languageId === '<%= userProps.fileType[1] %>')){
+		(<%- userProps.documentLanguageId %>)){
 		item.show();
 	} else{
 		item.hide();

@@ -263,14 +263,13 @@ module.exports = class extends yeoman {
 
       // set specific templates props
       userProps.extensionPoints = builder.getExtensionPoints(userProps.fileType, userProps.serverID); // Eclipse template
-      userProps.activationEvents = builder.getActivationEvents(userProps.fileType); // VS Code template
-      userProps.contributesLanguages = builder.getContributesLanguages(userProps.fileType); // VS Code template
-      userProps.fileEvents = builder.getFileEvents(userProps.fileType); // VS Code template
-      userProps.documentSelectors = builder.getFileTypesAsStringArrayFormat(userProps.fileType); // VS Code template
-      userProps.configurationSections = builder.getFileTypesAsStringArrayFormat(userProps.fileType); // VS Code template
-      userProps.documentLanguageId = builder.getDocumentLanguageId(userProps.fileType); // VS Code template
+      userProps.activationEvents = builder.getActivationEvents(userProps.fileType); // VS Code & Theia template
+      userProps.contributesLanguages = builder.getContributesLanguages(userProps.fileType); // VS Code & Theia template
+      userProps.fileEvents = builder.getFileEvents(userProps.fileType); // VS Code & Theia template
+      userProps.documentSelectors = builder.getFileTypesAsStringArrayFormat(userProps.fileType); // VS Code & Theia template
+      userProps.configurationSections = builder.getFileTypesAsStringArrayFormat(userProps.fileType); // VS Code & Theia template
+      userProps.documentLanguageId = builder.getDocumentLanguageId(userProps.fileType); // VS Code & Theia template
       userProps.fileTypeRegex = builder.getFileTypeRegex(userProps.fileType); // Eclipse Che template
-      // TO-DO... // Theia template
 
       // copy JAR file of existing LSP server written in Java language
       this.log('Copying LSP server to client resources...');

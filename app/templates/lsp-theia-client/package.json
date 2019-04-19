@@ -1,0 +1,45 @@
+{
+  "name": "<%= userProps.bundleName %>",
+  "displayName": "<%= userProps.bundleName %>",
+  "description": "VS Code client from Language Server Protocol",
+  "license": "Apache-2.0",
+  "version": "0.0.1",
+  "preview": true,
+  "publisher": "generator-lsp-clients",
+  "engines": {
+    "vscode": "^1.25.1"
+  },
+  "activationEvents": [ <% for (var i = 0; i < userProps.activationEvents.length; i++) { %> <%- userProps.activationEvents[i] %> <% } %>
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [ <% for (var i = 0; i < userProps.contributesLanguages.length; i++) { %> <%- userProps.contributesLanguages[i] %> <% } %>
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/glob": "^5.0.35",
+    "@types/node": "^10.5.7",
+    "mvn-artifact-download": "^3.1.0",
+    "tslint": "^5.12.1",
+    "typescript": "^2.0.3",
+    "vsce": "^1.59.0",
+    "vscode": "^1.1.33"
+  },
+  "dependencies": {
+    "decompress": "^4.2.0",
+    "download": "^7.1.0",
+    "expand-home-dir": "^0.0.3",
+    "find-java-home": "^0.2.0",
+    "glob": "^7.1.2",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1",
+    "path-exists": "^3.0.0",
+    "progress-stream": "^2.0.0",
+    "tmp": "^0.0.33",
+    "vscode-languageclient": "^4.4.0"
+  }
+}

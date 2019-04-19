@@ -168,6 +168,10 @@ module.exports = class extends yeoman {
           {
             name: 'eclipse-che',
             value: 'lsp-che-client'
+          },
+          {
+            name: 'theia',
+            value: 'lsp-theia-client'
           }],
         default: defaultClient,
         store: true
@@ -191,6 +195,10 @@ module.exports = class extends yeoman {
           {
             name: 'eclipse-che',
             value: 'default-che-client'
+          },
+          {
+            name: 'theia',
+            value: 'default-theia-client'
           }],
         default: defaultClient,
         store: true

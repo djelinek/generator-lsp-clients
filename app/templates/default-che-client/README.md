@@ -36,3 +36,13 @@ These steps are important to do inside yours Eclipse Che instance.
             <artifactId>ls-<%= userProps.bundleName %>-agent</artifactId>
         </dependency>
 ```
+
+### Test VS Code Extension inside Che 7
+
+- have access to a Che instance, choose your way:
+  - use che.openshift.io
+  - use [Che on OpenShift](https://www.eclipse.org/che/docs/che-6/openshift-single-user.html) (it is Che 6 doc but it is working with Che 7 currently)
+  - use [Che on Kubernetes](https://www.eclipse.org/che/docs/che-6/kubernetes-single-user.html) (it is Che 6 doc but it is working with Che 7 currently)
+  - DO NOT use Che on Docker, the plugins mechanism of Che 7 is not working
+- Create a workspace on stack "Che 7"
+- (DO NOT USE View --> Find Command , call "Deploy plugin by Id" and put _vscode:extension/"provider"."extension-name"_)

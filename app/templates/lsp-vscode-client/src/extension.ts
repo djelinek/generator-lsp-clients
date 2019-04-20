@@ -22,12 +22,12 @@ export function activate(context: ExtensionContext) {
 	}
 
 	var path = require('path');
-	var camelLanguageServerPath = context.asAbsolutePath(path.join('libs', 'lsp-server.jar'));
-	console.log(camelLanguageServerPath);
+	var languageServerPath = context.asAbsolutePath(path.join('libs', 'lsp-server.jar'));
+	console.log(languageServerPath);
 
 	let serverOptions: Executable = {
 		command: '<%= userProps.runJarField[0] %>',
-		args: [ '<%= userProps.runJarField[1] %>', camelLanguageServerPath],
+		args: [ '<%= userProps.runJarField[1] %>', languageServerPath],
 		options: {stdio:'pipe'}
 	};
 

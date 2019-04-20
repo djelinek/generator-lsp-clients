@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"configurations": [
 		{
-			"name": "Launch Camel LSP client Extension",
+			"name": "Launch LSP client Extension",
 			"type": "extensionHost",
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",
@@ -14,7 +14,7 @@
 			"preLaunchTask": "compile"
 		},
 		{
-			"name": "Launch Camel Language Server E2E Tests",
+			"name": "Launch Language Server E2E Tests",
 			"type": "extensionHost",
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",

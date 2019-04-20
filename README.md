@@ -13,7 +13,7 @@ The implemented tool should be easy to use and build on top of modern technologi
 - [x] VS Code
 - [x] Eclipse
 - [x] Eclipse Che
-- [ ] Theia
+- [x] Theia
 
 ## Running the generator-lsp-clients
 
@@ -30,3 +30,11 @@ Run generator:
 
 Example:
 > yo lsp-clients appname=MyClient jarPath=${home}/lsp-server.jar serverID=LANGUAGE_ID_APACHE_CAMEL fileType=xml client=eclipse
+
+## Running the Mocha tests
+
+First you must install mocha with npm.
+> npm install --global mocha
+
+Then, in the main generator-lsp-clients directory:
+> npm test

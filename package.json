@@ -1,6 +1,6 @@
 {
   "name": "generator-lsp-clients",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Tool for creating LSP clients for different IDEs (Eclipse, Eclipse Che, VS Code, …)",
   "homepage": "https://github.com/djelinek/generator-lsp-clients",
   "author": {
@@ -50,5 +50,9 @@
     "yeoman-generator": "^2.0.5",
     "yeoman-test": "^1.7.2",
     "yosay": "^2.0.1"
+  },
+  "scripts": {
+    "unit": "mocha --timeout=30000 tests/",
+    "test": "npm run unit"
   }
 }

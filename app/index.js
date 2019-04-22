@@ -20,6 +20,7 @@ var glob = require('glob');
 var path = require('path');
 var utils = require('./utils');
 var builder = require('./builder');
+var splitKeywords = require('split-keywords')
 
 // const defaultProject = "asdf";
 // const defaultServerType = "java";
@@ -58,11 +59,12 @@ module.exports = class extends yeoman {
     this.argument('serverType', { type: String, required: false });
     
     // Java server arguments
-    this.argument('jarPath', { type: String, required: false });
-    this.argument('serverID', { type: String, required: false });
-    this.argument('fileType', { type: Array, required: false });
-    // ---
-    
+    if(args.includes("serverType=java")) {
+      this.argument('jarPath', { type: String, required: false });
+      this.argument('serverID', { type: String, required: false });
+      this.argument('fileType', { type: String, required: false });
+    }
+
     // LSP Client argument
     this.argument('client', { type: String, required: false });
   }
@@ -71,14 +73,26 @@ module.exports = class extends yeoman {
     // default setting is - show user prompts
     var showPrompts = true;
 
+    // Hide user prompts for command line arguments - java templates
     if (utils.isNotNull(this.options.appname) &&
-      utils.isNotNull(this.options.serverType) &&
+      this.options.serverType.includes("java") &&
       // Java server options
       utils.isNotNull(this.options.jarPath) &&
       utils.isNotNull(this.options.serverID) &&
       utils.isNotNull(this.options.fileType) &&
       // ---
       utils.isNotNull(this.options.client)) {
+      // no prompts
+      showPrompts = false;
+    }
+
+    // Hide user prompts for command line arguments - other templates
+    if(utils.isNotNull(this.options.appname) &&
+      this.options.serverType.includes("other") &&
+      utils.isNotNull(this.options.client) &&
+      utils.isNull(this.options.jarPath) &&
+      utils.isNull(this.options.serverID) &&
+      utils.isNull(this.options.fileType)) {
       // no prompts
       showPrompts = false;
     }
@@ -91,11 +105,11 @@ module.exports = class extends yeoman {
     // sets default prompts values
     var defaultProject = utils.setDefault(this.appname, this.options.appname);
     var defaultServerType = utils.setDefault(this.serverType, this.options.serverType);
-    // Java server prompts
-    var defaultJarPath = utils.setDefault(defaultJarPath, this.options.jarPath);
-    var defaultServerID = utils.setDefault(defaultServerID, this.options.serverID);
-    var defaultFileType = utils.setDefault(defaultFileType, this.options.fileType);
-    // ---
+    if(this.options.serverType.match("java")) {
+      var defaultJarPath = utils.setDefault(defaultJarPath, this.options.jarPath);
+      var defaultServerID = utils.setDefault(defaultServerID, this.options.serverID);
+      var defaultFileType = splitKeywords(utils.setDefault(defaultFileType, this.options.fileType));
+    }
     var defaultClient = utils.setDefault(defaultClient, this.options.client);
 
     // show prompts question fields
@@ -210,26 +224,22 @@ module.exports = class extends yeoman {
       return this.prompt(questions).then(function (props) {
         this.appname = utils.replaceAll(props.name, ' ', '-');
         this.serverType = props.serverType;
-        // Java server variables
         if(utils.isJavaServerType(this.serverType)) {
           this.jarPath = props.jarPath;
           this.serverID = props.serverID;
           this.fileType = props.fileType;
         }
-        // ---
         this.client = props.client;
       }.bind(this));
     } else {
       // link command line parameters to appropriate generator variables
       this.appname = utils.replaceAll(defaultProject, ' ', '-');
       this.serverType = defaultServerType;
-      // Java server variables
       if(utils.isJavaServerType(this.serverType)) {
         this.jarPath = defaultJarPath;
         this.serverID = defaultServerID;
         this.fileType = defaultFileType;
       }
-      // ---
       this.client = utils.validateClientTemplateMask(defaultClient, this.serverType);
     }
   }

@@ -79,8 +79,14 @@ utils.validateClientTemplateMask = function validateClientTemplateMask(mask, ser
         if(serverType.match("java")) {
             returnValue = 'lsp-che-client'; 
         } else {
-            rreturnValue = 'default-che-client';
+            returnValue = 'default-che-client';
         }
+    } else if(mask.match('theia')) {
+        if(serverType.match("java")) {
+            returnValue = 'lsp-theia-client'; 
+        } else {
+            returnValue = 'default-theia-client';
+        } 
     } else {
         if(serverType.match("java")) {
             returnValue = 'lsp-eclipse-client';

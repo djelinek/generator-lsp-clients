@@ -29,19 +29,19 @@ Run generator:
 ## Running the generator-lsp-clients from Command Line
 
 Java servers example:
-> yo lsp-clients \\
-    appname=MyClient \\
-    serverType=java \\
-    jarPath=${home}/lsp-server.jar \\
-    serverID=LANGUAGE_ID_APACHE_CAMEL \\
-    fileType=xml,java \\
-    client=eclipse
+> yo lsp-clients \\<br/>
+&nbsp;&nbsp;appname=MyClient \\<br/>
+&nbsp;&nbsp;serverType=java \\<br/> 
+&nbsp;&nbsp;jarPath=${home}/lsp-server.jar \\<br/>
+&nbsp;&nbsp;serverID=LANGUAGE_ID_APACHE_CAMEL \\<br/>
+&nbsp;&nbsp;fileType=xml,java \\<br/>
+&nbsp;&nbsp;client=eclipse
 
 Other servers example:
-> yo lsp-clients \\
-    appname=MyClient \\
-    serverType=other \\
-    client=eclipse
+> yo lsp-clients \\<br/>
+&nbsp;&nbsp;appname=MyClient \\<br/>
+&nbsp;&nbsp;serverType=other \\<br/>
+&nbsp;&nbsp;client=eclipse
 
 ## Running the Mocha tests
 

@@ -105,11 +105,9 @@ module.exports = class extends yeoman {
     // sets default prompts values
     var defaultProject = utils.setDefault(this.appname, this.options.appname);
     var defaultServerType = utils.setDefault(this.serverType, this.options.serverType);
-    if(this.options.serverType.match("java")) {
-      var defaultJarPath = utils.setDefault(defaultJarPath, this.options.jarPath);
-      var defaultServerID = utils.setDefault(defaultServerID, this.options.serverID);
-      var defaultFileType = splitKeywords(utils.setDefault(defaultFileType, this.options.fileType));
-    }
+    var defaultJarPath = utils.setDefault(defaultJarPath, this.options.jarPath);
+    var defaultServerID = utils.setDefault(defaultServerID, this.options.serverID);
+    var defaultFileType = utils.setDefault(defaultFileType, this.options.fileType);
     var defaultClient = utils.setDefault(defaultClient, this.options.client);
 
     // show prompts question fields
@@ -238,7 +236,7 @@ module.exports = class extends yeoman {
       if(utils.isJavaServerType(this.serverType)) {
         this.jarPath = defaultJarPath;
         this.serverID = defaultServerID;
-        this.fileType = defaultFileType;
+        this.fileType = splitKeywords(defaultFileType);
       }
       this.client = utils.validateClientTemplateMask(defaultClient, this.serverType);
     }

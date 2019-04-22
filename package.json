@@ -46,12 +46,14 @@
     "path": "^0.12.7",
     "rx-lite": "^4.0.8",
     "rx-lite-aggregates": "^4.0.8",
+    "split-keywords": "^2.0.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-generator": "^2.0.5",
     "yeoman-test": "^1.7.2",
     "yosay": "^2.0.1"
   },
   "scripts": {
+    "postinstall": "npm install --save split-keywords",
     "unit": "mocha --timeout=30000 tests/",
     "test": "npm run unit"
   }

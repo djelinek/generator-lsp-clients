@@ -1,6 +1,6 @@
 {
   "name": "generator-lsp-clients",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Tool for creating LSP clients for different IDEs (Eclipse, Eclipse Che, VS Code, …)",
   "homepage": "https://github.com/djelinek/generator-lsp-clients",
   "author": {

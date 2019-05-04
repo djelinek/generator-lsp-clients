@@ -34,7 +34,7 @@
     "maven": "^4.4.1",
     "mocha": "^5.2.0",
     "prettier": "^1.15.2",
-    "soap": "^0.25.0"
+    "soap": "^0.27.1"
   },
   "dependencies": {
     "chalk": "^2.1.0",

@@ -71,25 +71,25 @@ utils.validateClientTemplateMask = function validateClientTemplateMask(mask, ser
     let returnValue;
     if(mask.match('vscode')) {
         if(serverType.match("java")) {
-            returnValue = 'lsp-vscode-client'; 
+            returnValue = 'java-vscode-client'; 
         } else {
             returnValue = 'default-vscode-client'; 
         }
     } else if(mask.match('che')) {
         if(serverType.match("java")) {
-            returnValue = 'lsp-che-client'; 
+            returnValue = 'java-che-client'; 
         } else {
             returnValue = 'default-che-client';
         }
     } else if(mask.match('theia')) {
         if(serverType.match("java")) {
-            returnValue = 'lsp-theia-client'; 
+            returnValue = 'java-theia-client'; 
         } else {
             returnValue = 'default-theia-client';
         } 
     } else {
         if(serverType.match("java")) {
-            returnValue = 'lsp-eclipse-client';
+            returnValue = 'java-eclipse-client';
         } else {
             returnValue = 'default-eclipse-client';
         }

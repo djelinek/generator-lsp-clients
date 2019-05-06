@@ -22,7 +22,7 @@ var helpers = require('yeoman-test');
 var fs = require('fs-extra');
 var basicProps = {};
 
-describe('lsp-clients:app', function () {
+describe('java-clients:app', function () {
 
     /**
      * VS Code template
@@ -35,7 +35,7 @@ describe('lsp-clients:app', function () {
           basicProps.jarPath = path.join(__dirname, '../tests/resources/xml-server.jar');
           basicProps.serverID = 'xml';
           basicProps.fileType = 'xml';
-          basicProps.client = "lsp-vscode-client";
+          basicProps.client = "java-vscode-client";
     
           return helpers.run(path.join(__dirname, '../app'))
             .inTmpDir(function (dir) {
@@ -54,7 +54,6 @@ describe('lsp-clients:app', function () {
         it('Should create the basic structure?', function () {
           assert.file('README.md');
           assert.file('package.json');
-          assert.file('package-lock.json');
           assert.file('language-configuration.json');
           assert.file('.project');
           assert.file('gulpfile.js');
@@ -86,7 +85,7 @@ describe('lsp-clients:app', function () {
           basicProps.jarPath = path.join(__dirname, '../tests/resources/xml-server.jar');
           basicProps.serverID = 'xml';
           basicProps.fileType = 'xml';
-          basicProps.client = "lsp-theia-client";
+          basicProps.client = "java-theia-client";
     
           return helpers.run(path.join(__dirname, '../app'))
             .inTmpDir(function (dir) {
@@ -105,7 +104,6 @@ describe('lsp-clients:app', function () {
         it('Should create the basic structure?', function () {
           assert.file('README.md');
           assert.file('package.json');
-          assert.file('package-lock.json');
           assert.file('language-configuration.json');
           assert.file('.project');
           assert.file('gulpfile.js');
@@ -137,7 +135,7 @@ describe('lsp-clients:app', function () {
           basicProps.jarPath = path.join(__dirname, '../tests/resources/xml-server.jar');
           basicProps.serverID = 'xml';
           basicProps.fileType = 'xml';
-          basicProps.client = "lsp-che-client";
+          basicProps.client = "java-che-client";
     
           return helpers.run(path.join(__dirname, '../app'))
             .inTmpDir(function (dir) {
@@ -187,7 +185,7 @@ describe('lsp-clients:app', function () {
           basicProps.jarPath = path.join(__dirname, '../tests/resources/xml-server.jar');
           basicProps.serverID = 'xml';
           basicProps.fileType = 'xml';
-          basicProps.client = "lsp-eclipse-client";
+          basicProps.client = "java-eclipse-client";
     
           return helpers.run(path.join(__dirname, '../app'))
             .inTmpDir(function (dir) {

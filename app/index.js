@@ -171,19 +171,19 @@ module.exports = class extends yeoman {
         choices: [
           {
             name: 'vscode',
-            value: 'lsp-vscode-client'
+            value: 'java-vscode-client'
           },
           {
             name: 'eclipse',
-            value: 'lsp-eclipse-client'
+            value: 'java-eclipse-client'
           },
           {
             name: 'eclipse-che',
-            value: 'lsp-che-client'
+            value: 'java-che-client'
           },
           {
             name: 'theia',
-            value: 'lsp-theia-client'
+            value: 'java-theia-client'
           }],
         default: defaultClient,
         store: true
